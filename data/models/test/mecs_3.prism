@@ -1,0 +1,45 @@
+mdp
+
+module mod
+    s: [0..15] init 15;
+
+    // Mec 1
+    [a] s=0 -> (s'=1);
+    [b] s=1 -> (s'=2);
+    [c] s=2 -> (s'=3);
+    [d] s=3 -> (s'=4);
+    [e] s=4 -> (s'=5);
+    [f] s=5 -> (s'=0);
+    // Mec 2
+    [g] s=6 -> (s'=7);
+    [h] s=7 -> (s'=8);
+    [i] s=8 -> (s'=9);
+    [j] s=9 -> (s'=10);
+    [k] s=10 -> (s'=6);
+    // Mec 3
+    [l] s=11 -> (s'=12);
+    [m] s=12 -> (s'=13);
+    [n] s=13 -> (s'=14);
+    [o] s=14 -> (s'=11);
+
+    [p] s=15 -> 0.1: (s'=0) + 0.4: (s'=6) + 0.5: (s'=11);
+endmodule
+
+rewards "default"
+    [a] true: 1;
+    [b] true: 2;
+    [c] true: 3;
+    [d] true: 4;
+    [e] true: 5;
+    [f] true: 1;
+    [g] true: 2;
+    [h] true: 4;
+    [i] true: 7;
+    [j] true: 9;
+    [k] true: 10;
+    [l] true: 12;
+    [m] true: 13;
+    [n] true: 10;
+    [o] true: 1;
+    [p] true: 11;
+endrewards

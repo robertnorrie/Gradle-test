@@ -1,0 +1,5 @@
+- type: pet
+  name: PET
+  conf:
+    path: build/pet/bin/partial-exploration
+    precision: 1e-6

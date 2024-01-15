@@ -1,0 +1,17 @@
+mdp
+
+module mec
+    s: [0..6] init 0;
+
+    [a] s=0 -> (s'=1);
+    [b] s=1 -> (s'=2);
+    [c] s=2 -> (s'=3);
+    [d] s=3 -> (s'=4);
+    [e] s=4 -> (s'=5);
+    [f] s=5 -> (s'=6);
+    [g] s=6 -> (s'=0);
+endmodule
+
+rewards "default"
+    true: 5;
+endrewards

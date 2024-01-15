@@ -1,0 +1,8 @@
+// Maximum probability of configuring correctly
+"correct_max": Pmax=? [ F (l=4 & ip=1) ];
+// Minimum probability of configuring correctly
+"correct_min": Pmin=? [ F (l=4 & ip=1) ];
+
+"correct_thresh": P>=0.5 [ F (l=4 & ip=1) ];
+"correct_max_step": Pmax=? [ F<=30 (l=4 & ip=1) ];
+"correct_min_step": Pmin=? [ F<=30 (l=4 & ip=1) ];

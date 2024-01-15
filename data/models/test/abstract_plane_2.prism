@@ -1,0 +1,46 @@
+const double crash;
+
+mdp
+
+module plane
+  // 0 munich
+  // 1 starting
+  // 2 mid-air
+  // 3 landing
+  // 4 prague
+  // 5 starting
+  // 6 mid-air
+  // 7 landing
+  // 8 crashed
+  place: [0..8];
+
+  [] place=0 -> 1 : (place'=1);
+  [] place=0 -> 1 : (place'=0);
+
+  [] place=1 -> (1-crash) : (place'=2) + crash : (place'=8);
+  [] place=1 -> 1 : (place'=8);
+
+  [] place=2 -> 1 : (place'=3);
+
+  [] place=3 -> (1-crash) : (place'=4) + crash : (place'=8);
+  [] place=3 -> 1 : (place'=8);
+
+  [] place=4 -> 1 : (place'=5);
+  [] place=4 -> 1 : (place'=4);
+
+  [] place=5 -> (1-crash) : (place'=6) + crash : (place'=8);
+  [] place=5 -> (place'=8);
+
+  [] place=6 -> 1 : (place'=7);
+
+  [] place=7 -> (1-crash) : (place'=0) + crash : (place'=8);
+  [] place=7 -> (place'=8);
+
+  [] place=8 -> (place'=8);
+endmodule
+
+rewards "default"
+  place=4 : 5;
+  place=0 : 1;
+  place=8 : -10;
+endrewards

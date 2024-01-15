@@ -1,0 +1,12 @@
+const MAX;
+
+dtmc
+
+module m3
+  s : [0..8] init 0;
+
+  [] s=0 -> 0.5 : (s'=1) + 0.5 : (s'=2);
+  [] s=1 -> 1 : (s'=1);
+  [] (2<=s & s<MAX) -> 0.5 : (s'=2) + 0.5 : (s'=s+1);
+  [] s=MAX -> 1 : (s'=s);
+endmodule

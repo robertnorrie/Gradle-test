@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+  <!-- Soon we will doc everything ... -->
+  <suppress checks="JavadocMethod"/>
+  <!-- We avoid final modifier -->
+  <suppress checks="VariableDeclarationUsageDistanceCheck"/>
+  <!-- There are a ton of single-letter variables -->
+  <suppress checks="ParameterName"/>
+  <suppress checks="MemberNam"/>
+  <suppress checks="LocalVariableName"/>
+
+  <suppress checks="CyclomaticComplexity"/>
+  <suppress checks="IllegalImport" id="BanLoggingImplementations"/>
+  <suppress checks="HiddenField"/>
+  <suppress checks="MethodLength"/>
+  <suppress checks="AvoidStaticImport"/>
+</suppressions>

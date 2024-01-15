@@ -1,0 +1,305 @@
+- model:
+    path: models/prism/phil-nofair.3.prism
+  tags: [ mdp, connected ]
+  queries:
+    - type: core
+      tags: [ fast, ci ]
+    - type: mean_payoff
+      tags: [ fast, ci ]
+      spec:
+        rewards: eat
+        reward_min: 0
+        reward_max: 10
+        expected: 0.9090909090
+- model:
+    path: models/prism/phil-nofair.4.prism
+  tags: [ mdp, connected ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: mean_payoff
+      spec:
+        rewards: eat
+        reward_min: 0
+        reward_max: 10
+- model:
+    path: models/prism/rabin.3.prism
+    properties: models/prism/rabin.props
+  tags: [ mdp, connected ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: reach
+      tags: [ fast ]
+      spec:
+        property: live
+        expected: 1.0
+- model:
+    path: models/prism/rabin.4.prism
+    properties: models/prism/rabin.props
+  tags: [ mdp, connected ]
+  queries:
+    - type: core
+- model:
+    path: models/prism/rabin.6.prism
+    properties: models/prism/rabin.props
+  tags: [ mdp, connected ]
+  queries:
+    - type: reach
+      tags: [ fast ]
+      spec:
+        property: live
+        expected: 1.0
+- model:
+    path: models/prism/pnueli-zuck.10.prism
+    properties: models/prism/pnueli-zuck.props
+  tags: [ mdp, connected ]
+  queries:
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: live
+        expected: 1.0
+- model:
+    path: models/prism/zeroconf.prism
+    const: N=1000,K=8,reset=false
+    properties: models/prism/zeroconf.props
+  tags: [ mdp ]
+  queries:
+    - type: core
+      tags: [ fast, ci ]
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: correct_max
+        expected: 4.80141363507243e-8
+        error: relative
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: correct_min
+        expected: 5.040105212929839e-9
+        error: relative
+- model:
+    path: models/prism/zeroconf.prism
+    const: N=10,K=2,reset=false
+    properties: models/prism/zeroconf.props
+  tags: [ mdp ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: correct_max_step
+        expected: 1.0049215223705106e-5
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: correct_min_step
+        expected: 1.0049215223705106e-6
+- model:
+    path: models/prism/csma.3-2.prism
+    properties: models/prism/csma.props
+  tags: [ ctmc ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: some_before
+        expected: 0.5859375
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: all_before_min
+        expected: 0.43496662487687193
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: all_before_max
+        expected: 0.8596150364756961
+- model:
+    path: models/prism/csma.3-4.prism
+    properties: models/prism/csma.props
+  tags: [ ctmc ]
+  queries:
+    - type: core
+      tags: [ slow ]
+    - type: reach
+      tags: [ slow ]
+      spec:
+        property: some_before
+    - type: reach
+      tags: [ slow ]
+      spec:
+        property: all_before_min
+- model:
+    path: models/prism/embedded.prism
+    const: MAX_COUNT=8,T=12
+    properties: models/prism/embedded.props
+  tags: [ ctmc ]
+  queries:
+    - type: core
+      tags: [ fast, ci ]
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: actuators
+        expected: 0.1053036557931282
+- model:
+    path: models/prism/polling.8.prism
+    const: T=16
+    properties: models/prism/polling.props
+  tags: [ ctmc, connected ]
+  queries:
+    - type: core
+      tags: [ fast, ci ]
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: s1_before_s2
+        expected: 0.540554670
+- model:
+    path: models/prism/wlan.2.prism
+    const: COL=2
+    properties: models/prism/wlan.props
+  tags: [ mdp ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: reach
+      tags: [ fast, ci ]
+      spec:
+        property: sent_steps
+        expected: 0.0390625
+- model:
+    path: models/prism/cs_nfail.3.prism
+  tags: [ mdp ]
+  queries:
+    - type: core
+      tags: [ fast, ci ]
+    - type: mean_payoff
+      tags: [ fast, ci ]
+      spec:
+        rewards: grants
+        reward_min: 0
+        reward_max: 2
+        expected: 0.2997
+- model:
+    path: models/prism/cs_nfail.5.prism
+  tags: [ mdp ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: mean_payoff
+      tags: [ fast ]
+      spec:
+        rewards: grants
+        reward_min: 0
+        reward_max: 4
+- model:
+    path: models/prism/brp.prism
+    const: N=10,MAX=20
+  tags: [ dtmc ]
+  queries:
+    - type: core
+      tags: [ fast, ci ]
+- model:
+    path: models/prism/cyclin.prism
+    const: N=2
+  tags: [ ctmc ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: mean_payoff
+      tags: [ fast ]
+      spec:
+        rewards: cdc14
+        reward_min: 0
+        reward_max: 4
+        expected: 3.890323445
+- model:
+    path: models/prism/mer.3.prism
+  tags: [ mdp ]
+  queries:
+    - type: core
+      tags: [ fast ]
+    - type: mean_payoff
+      tags: [ fast ]
+      spec:
+        rewards: grants
+        reward_min: 0
+        reward_max: 2
+- model:
+    path: models/prism/mer.4.prism
+  tags: [ mdp ]
+  queries:
+    - type: core
+    - type: mean_payoff
+      spec:
+        rewards: grants
+        reward_min: 0
+        reward_max: 2
+
+- model:
+    path: models/test/mecs_1.prism
+  tags: [ mdp, ci ]
+  queries:
+    - type: mean_payoff
+      spec:
+        rewards: 0
+        reward_min: 0
+        reward_max: 10
+        expected: 5
+- model:
+    path: models/test/mecs_2.prism
+  tags: [ mdp, ci ]
+  queries:
+    - type: mean_payoff
+      spec:
+        rewards: 0
+        reward_min: 0
+        reward_max: 20
+        expected: 8.1
+- model:
+    path: models/test/mecs_3.prism
+  tags: [ mdp, ci ]
+  queries:
+    - type: mean_payoff
+      spec:
+        rewards: 0
+        reward_min: 0
+        reward_max: 20
+        expected: 6.594
+- model:
+    path: models/test/mecs_4.prism
+  tags: [ mdp, ci ]
+  queries:
+    - type: mean_payoff
+      spec:
+        rewards: 0
+        reward_min: 0
+        reward_max: 20
+        expected: 3.4314
+- model:
+    path: models/test/mecs_5.prism
+  tags: [ mdp, ci ]
+  queries:
+    - type: mean_payoff
+      spec:
+        rewards: 0
+        reward_min: 0
+        reward_max: 20
+        expected: 8.1
+- model:
+    path: models/test/mecs_6.prism
+  tags: [ mdp, ci ]
+  queries:
+    - type: mean_payoff
+      spec:
+        rewards: 0
+        reward_min: 0
+        reward_max: 20
+        expected: 2.301492537313436

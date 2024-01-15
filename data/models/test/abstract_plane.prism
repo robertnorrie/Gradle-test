@@ -1,0 +1,59 @@
+const double crash;
+const double flip;
+const int recovery_size;
+const bool return;
+
+mdp
+
+module plane
+  // 0 munich
+  // 1 starting
+  // 2 mid-air
+  // 3 landing
+  // 4 prague
+  // 5 starting
+  // 6 mid-air
+  // 7 landing
+  // 8 crashed
+  place: [0..7];
+  // 0: no error, 1: bit flipped, 2: unrecoverable
+  state: [0..2];
+
+  // Bogus internal state for the recovery process
+  internal_1: [0..recovery_size];
+  internal_2: [0..recovery_size];
+
+
+  [] place=0 -> 1 : (place'=1);
+
+  [] place=1 -> (1-crash) : (place'=2) + crash : (place'=8);
+  [] place=1 -> (place'=8);
+
+  [] place=2 & state=0 -> (1-flip) : (place'=3) + flip : (state'=1);
+
+  [] place=3 -> (1-crash) : (place'=4) + crash : (place'=8);
+  [] place=3 -> (place'=8);
+
+  [] place=4 & return -> 1 : (place'=5);
+
+  [] place=5 -> (1-crash) : (place'=6) + crash : (place'=8);
+  [] place=5 -> (place'=8);
+
+  [] place=6 & state=0 -> (1-flip) : (place'=7) + flip : (state'=1);
+
+  [] place=7 -> (1-crash) : (place'=0) + crash : (place'=8);
+  [] place=7 -> (place'=8);
+
+  [] state=2 -> (place'=8) & (state'=0);
+
+  [] state=1 & internal_1 = 0 & internal_2 = recovery_size -> (state'=0) & (internal_2'=0);
+  [] state=1 & internal_1 = recovery_size & internal_2 = 0 -> (state'=2) & (internal_1'=0);
+
+  [] state=1 -> 0.5 : (internal_1'=max(0, internal_1-1)) + 0.5 : (internal_1'=min(recovery_size, internal_1 + 1));
+  [] state=1 -> 0.5 : (internal_2'=max(0, internal_2-1)) + 0.5 : (internal_2'=min(recovery_size, internal_2 + 1));
+endmodule
+
+rewards "default"
+  place=4 : 5;
+  place=8 : -10;
+endrewards

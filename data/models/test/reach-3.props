@@ -1,0 +1,11 @@
+// Expected P = 0.5
+"true_until": P=? [ s<MAX U s=MAX ];
+
+// Expected P = 0
+"false_until": P=? [ s=3 U s=MAX ];
+
+// Expected P = 0.5
+"nonzero_reach": P=? [ F s=MAX ];
+
+
+"bounded_reach": P=? [ F<=10 s=MAX ];
