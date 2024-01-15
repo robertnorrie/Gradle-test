@@ -1,5 +1,5 @@
 dependency_scanning:
-  image: snyk/snyk:gradle-jdk11
+  image: snyk:gradle-jdk11
   stage: test
   script:
     # Install npm, snyk, and snyk-to-html
