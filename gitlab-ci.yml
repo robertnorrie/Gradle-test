@@ -1,0 +1,22 @@
+dependency_scanning:
+  image: snyk/snyk:gradle-jdk16
+  stage: test
+  script:
+    # Install npm, snyk, and snyk-to-html
+    #- npm install -g npm@latest
+    #- npm install -g snyk
+    #- npm install snyk-to-html -g
+    # Run snyk help, snyk auth, snyk monitor, snyk test to break build and out report
+
+    #- snyk --help
+    - snyk auth $SNYK_TOKEN
+    - echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
+    - snyk monitor --org=$SNYK_ORG_ID --project-name=${CI_PROJECT_DIR} # <---the project name in Snyk UI will be <GitLab api url>:<GitLab commit SHA(short)>
+    - snyk code test --report --org=$SNYK_ORG_ID --project-name=${CI_PROJECT_DIR}
+  
+    #- snyk test --json --org=$SNYK_ORG_ID | snyk-to-html -o snyk_results.html
+  # Save report to artifacts
+  #artifacts:
+  #  when: always
+  #  paths:
+  #    - snyk_results.html
