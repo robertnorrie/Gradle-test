@@ -11,7 +11,7 @@ dependency_scanning:
     #- snyk --help
     - curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
     - chmod +x ./snyk
-    - echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
+    - echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG}:${CI_PROJECT_PATH} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
     
     - ./snyk auth $SNYK_TOKEN
     - ./snyk monitor --org=$SNYK_ORG_ID --project-name=${CI_PROJECT_DIR} # <---the project name in Snyk UI will be <GitLab api url>:<GitLab commit SHA(short)>
