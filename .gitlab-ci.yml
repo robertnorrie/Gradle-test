@@ -15,7 +15,7 @@ dependency_scanning:
     
     - ./snyk auth $SNYK_TOKEN
     - ./snyk monitor --org=$SNYK_ORG_ID --project-name=${CI_PROJECT_DIR} --remote-repo-url=$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_TITLE # <---the project name in Snyk UI will be <GitLab api url>:<GitLab commit SHA(short)>
-    - ./snyk code test --report --org=${SNYK_ORG_ID} --project-name=${CI_PROJECT_DIR}
+    - ./snyk code test --report --org=${SNYK_ORG_ID} --project-name=$CI_PROJECT_DIR --target-name=$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_TITLE
   
     #- snyk test --json --org=$SNYK_ORG_ID | snyk-to-html -o snyk_results.html
   # Save report to artifacts
