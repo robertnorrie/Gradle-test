@@ -3,10 +3,10 @@ dependency_scanning:
   stage: test
   script:
     # Install npm, snyk, and snyk-to-html
-    - apt update
-    #- npm install -g npm@latest
-    #- npm install -g snyk
-    #- npm install snyk-to-html -g
+    - apt install nodejs
+    - npm install -g npm@latest
+    - npm install -g snyk
+    - npm install snyk-to-html -g
     # Run snyk help, snyk auth, snyk monitor, snyk test to break build and out report
 
     - snyk --help
