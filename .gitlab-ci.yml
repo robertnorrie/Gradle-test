@@ -3,7 +3,7 @@ dependency_scanning:
   stage: test
   script:
     # Install npm, snyk, and snyk-to-html
-    - sudo apt install nodejs
+    - apt install nodejs
     - npm install -g npm@latest
     - npm install -g snyk
     - npm install snyk-to-html -g
