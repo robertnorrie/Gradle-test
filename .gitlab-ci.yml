@@ -1,22 +1,19 @@
 dependency_scanning:
-  image: node:latest
+  image: gradle:7.4.2-jdk11
+  COPY --from=snyk/snyk:alpine /usr/local/bin/snyk /usr/local/bin/snyk
   stage: test
   script:
     # Install npm, snyk, and snyk-to-html
-    - apt install openjdk-11-jdk
-    - java -version
-    - VERSION=7.4.2
-    - wget https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp
-    - npm install -g npm@latest
-    - npm install -g snyk
-    - npm install snyk-to-html -g
+    #- apt install 
+    #- npm install -g npm@latest
+    #- npm install -g snyk
+    #- npm install snyk-to-html -g
     # Run snyk help, snyk auth, snyk monitor, snyk test to break build and out report
 
     - snyk --help
     #- curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
     #- chmod +x ./snyk
     - echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG}:${CI_PROJECT_PATH}:${CI_PROJECT_ROOT_NAMESPACE}:${CI_PROJECT_TITLE} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
-    
     - ./snyk auth $SNYK_TOKEN
     - ./snyk monitor --org=$SNYK_ORG_ID --project-name=${CI_PROJECT_DIR} --remote-repo-url=$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_TITLE # <---the project name in Snyk UI will be <GitLab api url>:<GitLab commit SHA(short)>
     - ./snyk code test --report --org=${SNYK_ORG_ID} --project-name=$CI_PROJECT_DIR --target-name=$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_TITLE
