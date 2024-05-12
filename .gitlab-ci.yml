@@ -3,7 +3,7 @@ dependency_scanning:
   stage: test
   script:
     # Install npm, snyk, and snyk-to-html
-    - sudo apt install openjdk-11-jdk
+    - apt install openjdk-11-jdk
     - java -version
     - VERSION=7.4.2
     - wget https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp
