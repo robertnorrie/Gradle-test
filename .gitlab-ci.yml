@@ -1,12 +1,12 @@
 dependency_scanning:
-  image: gradle:7.4.2-jdk11
+  image: node:latest
   stage: test
   script:
     # Install npm, snyk, and snyk-to-html
-    - RUN apt-get install -y curl \
-  && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
-  && apt-get install -y nodejs \
-  && curl -L https://www.npmjs.com/install.sh | sh
+    - sudo apt install openjdk-11-jdk
+    - java -version
+    - VERSION=7.4.2
+    - wget https://services.gradle.org/distributions/gradle-${VERSION}-bin.zip -P /tmp
     - npm install -g npm@latest
     - npm install -g snyk
     - npm install snyk-to-html -g
