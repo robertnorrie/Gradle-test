@@ -10,7 +10,7 @@ dependency_scanning:
     #- npm install snyk-to-html -g
     # Run snyk help, snyk auth, snyk monitor, snyk test to break build and out report
 
-    - snyk --help
+    #- snyk --help
     #- curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
     #- chmod +x ./snyk
     - echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG}:${CI_PROJECT_PATH}:${CI_PROJECT_ROOT_NAMESPACE}:${CI_PROJECT_TITLE} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
