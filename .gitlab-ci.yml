@@ -4,7 +4,7 @@ dependency_scanning:
   script:
 
     #- npm install -g npm@latest
-    - apt-get install -y jq
+    - apt-get install -y apt-utils && apt-get install -y jq
     - npm install -g snyk
     - npm install -g snyk-delta
     #- npm install snyk-to-html -g
