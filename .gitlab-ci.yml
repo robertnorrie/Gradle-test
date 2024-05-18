@@ -4,6 +4,7 @@ dependency_scanning:
   before_script:
   - apt-get -qq update
   - apt-get install -y apt-utils
+  - apt install libc-bin
   - apt-get install -y jq
 
   stage: test
