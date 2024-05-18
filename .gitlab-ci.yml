@@ -8,7 +8,9 @@ dependency_scanning:
   #- apt-get install --reinstall ./libc-bin*.deb
   #- apt-get install -y apt-utils
   #- apt-get install -y jq
-  - cpan Jq
+  - wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \ 
+    && chmod +x ./jq \
+    && cp jq /usr/bin \
 
   stage: test
   script:
