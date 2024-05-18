@@ -2,6 +2,7 @@ dependency_scanning:
   image: antzsnyk/gradle-7.6-nodejs-20
 
   before_script:
+  - apt update && apt clean
   - apt install -y jq
 
 #https://github.com/jqlang/jq/releases/download/jq-1.5/jq-linux64
