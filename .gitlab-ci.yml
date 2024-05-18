@@ -1,5 +1,5 @@
 dependency_scanning:
-  image: antzsnyk/gradle-7.4.2-nodejs-20
+  image: antzsnyk/gradle-7.6-nodejs-20
 
   before_script:
   - curl https://github.com/jqlang/jq/releases/download/jq-1.5/jq-linux64 > /usr/bin/jq && chmod +x /usr/bin/jq
