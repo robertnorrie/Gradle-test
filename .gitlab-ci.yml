@@ -1,10 +1,15 @@
 dependency_scanning:
   image: antzsnyk/gradle-7.4.2-nodejs-20
+
+  before_script:
+  - apt-get install -y apt-utils
+  - apt-get -qq update
+  - apt-get install -y jq
+
   stage: test
   script:
 
     #- npm install -g npm@latest
-    - apt-get install -y apt-utils && apt-get install -y jq
     - npm install -g snyk
     - npm install -g snyk-delta
     #- npm install snyk-to-html -g
