@@ -14,9 +14,9 @@ dependency_scanning:
     #- curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
     #- chmod +x ./snyk
     #- echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG}:${CI_PROJECT_PATH}:${CI_PROJECT_ROOT_NAMESPACE}:${CI_PROJECT_TITLE} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
-    #- snyk auth $SNYK_TOKEN
-    #- snyk monitor --org=$SNYK_ORG_ID --project-name=${CI_PROJECT_DIR} --remote-repo-url=$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_TITLE # <---the project name in Snyk UI will be <GitLab api url>:<GitLab commit SHA(short)>
-    #- snyk code test --report --org=${SNYK_ORG_ID} --project-name=$CI_PROJECT_DIR --target-name=$CI_PROJECT_ROOT_NAMESPACE/$CI_PROJECT_TITLE
+    - snyk auth $SNYK_TOKEN
+    - snyk monitor --org=$SNYK_ORG_ID --remote-repo-url=$CI_PROJECT_DIR # <---the target name in Snyk UI will be <the root dir>
+    #- ./snyk_delta_all_projects.sh --org=$SNYK_ORG_ID --severity-threshold=high --print-dep-path --setPassIfNoBaseline true
   
     #- snyk test --json --org=$SNYK_ORG_ID | snyk-to-html -o snyk_results.html
   # Save report to artifacts
