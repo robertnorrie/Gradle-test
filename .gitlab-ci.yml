@@ -9,7 +9,7 @@ dependency_scanning:
   #- apt-get install -y apt-utils
   #- apt-get install -y jq
   - curl https://stedolan.github.io/jq/download/linux64/jq > /usr/bin/jq && chmod +x /usr/bin/jq
-  - jq
+  - ls -la /usr/bin/jq
 
   stage: test
   script:
