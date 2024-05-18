@@ -2,11 +2,11 @@ dependency_scanning:
   image: antzsnyk/gradle-7.4.2-nodejs-20
 
   before_script:
-  - dpkg --purge --force-all libc-bin
-  - apt install libc-bin
+  #- dpkg --purge --force-all libc-bin
+  #- apt install libc-bin
   #- dpkg -x libc-bin*.deb /
   #- apt-get install --reinstall ./libc-bin*.deb
-  - apt-get install -y apt-utils
+  #- apt-get install -y apt-utils
   - apt-get install -y jq
 
   stage: test
