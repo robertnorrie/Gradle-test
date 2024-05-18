@@ -2,7 +2,7 @@ dependency_scanning:
   image: antzsnyk/gradle-7.4.2-nodejs-20
 
   before_script:
-  - curl https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64 > /usr/bin/jq && chmod +x /usr/bin/jq
+  - curl https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64 > /usr/bin/jq && chmod +x /usr/bin/jq
   - ls -la /usr/bin/jq
   - jq --version
 
