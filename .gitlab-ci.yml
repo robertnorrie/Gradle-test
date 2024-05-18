@@ -8,8 +8,11 @@ dependency_scanning:
   #- apt-get install --reinstall ./libc-bin*.deb
   #- apt-get install -y apt-utils
   #- apt-get install -y jq
-  - curl https://stedolan.github.io/jq/download/linux64/jq > /usr/bin/jq && chmod +x /usr/bin/jq
+  - curl https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-arm64 > /usr/bin/jq && chmod +x /usr/bin/jq
   - ls -la /usr/bin/jq
+  - jq --version
+
+#https://github.com/jqlang/jq/releases/download/jq-1.5/jq-linux64
 
   stage: test
   script:
@@ -25,9 +28,8 @@ dependency_scanning:
     #- chmod +x ./snyk
     #- echo SnykProjName:${CI_PROJECT_DIR}:${CI_PROJECT_NAME}:${CI_PROJECT_PATH_SLUG}:${CI_PROJECT_PATH}:${CI_PROJECT_ROOT_NAMESPACE}:${CI_PROJECT_TITLE} # <--- We're adding these GitLab variables to the Snyk monitor command directly below
     - snyk auth $SNYK_TOKEN
-    - snyk monitor --all-projects --org=$SNYK_ORG_ID --remote-repo-url=$CI_PROJECT_DIR # <---the target name in Snyk UI will be <the root dir>
     - ./snyk_delta_all_projects.sh --baselineOrg $SNYK_ORG_ID --remote-repo-url=$CI_PROJECT_DIR --severity-threshold=high --print-dep-path --setPassIfNoBaseline true
-  
+    #- snyk monitor --all-projects --org=$SNYK_ORG_ID --remote-repo-url=$CI_PROJECT_DIR # <---the target name in Snyk UI will be <the root dir>
     #- snyk test --json --org=$SNYK_ORG_ID | snyk-to-html -o snyk_results.html
   # Save report to artifacts
   #artifacts:
