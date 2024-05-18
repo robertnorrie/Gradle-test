@@ -3,7 +3,9 @@ dependency_scanning:
 
   before_script:
   - apt-get -qq update
-  - apt install libc-bin
+  - apt-get download libc-bin
+  - dpkg -x libc-bin*.deb /
+  - apt-get install --reinstall ./libc-bin*.deb
   - apt-get install -y apt-utils
   - apt-get install -y jq
 
