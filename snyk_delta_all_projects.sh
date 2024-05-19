@@ -13,11 +13,11 @@ snyk_test_json=''
 formatted_json=''
 args=("$*")
 
-echo "baselineOrg = $SNYK_BASELINE_ORG_ID"
+echo baselineOrg = "${SNYK_BASELINE_ORG_ID}"
 
 run_snyk_delta () {
     # add in any other arguments you would like to use
-    snyk-delta -d --baselineOrg $SNYK_BASELINE_ORG_ID --setPassIfNoBaseline true
+    snyk-delta -d --baselineOrg "${SNYK_BASELINE_ORG_ID}" --setPassIfNoBaseline true
 }
 
 run_snyk_test () {
