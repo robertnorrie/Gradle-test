@@ -1,10 +1,5 @@
 dependency_scanning:
-  image: antzsnyk/gradle-snyk-nodejs-20
-
-  before_script:
-  - npm install jq
-
-#https://github.com/jqlang/jq/releases/download/jq-1.5/jq-linux64
+  image: antzsnyk/gradle-7.6-nodejs-20-jq-1.6
 
   stage: test
   script:
