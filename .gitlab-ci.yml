@@ -8,7 +8,7 @@ dependency_scanning:
     - npm install -g snyk-delta
 
     - snyk auth $SNYK_TOKEN
-    - ./snyk_delta_all_proje --fail-on=upgradable
+    - ./snyk_delta_all_projects.sh --org=${SNYK_BASELINE_ORG_ID} --remote-repo-url=$CI_PROJECT_DIR --severity-threshold=medium
     - snyk monitor --all-projects --org=${SNYK_BASELINE_ORG_ID} --remote-repo-url=$CI_PROJECT_DIR
 
   # Save report to artifacts
