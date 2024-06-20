@@ -13,11 +13,9 @@ snyk_test_json=''
 formatted_json=''
 args=("$*")
 
-echo 'baselineOrg = '${SNYK_BASELINE_ORG_ID}
-
 run_snyk_delta () {
     # add in any other arguments you would like to use
-    snyk-delta --type=vuln --fail-on=upgradable --baselineOrg=${SNYK_BASELINE_ORG_ID} --setPassIfNoBaseline=true
+    snyk-delta
 }
 
 run_snyk_test () {
