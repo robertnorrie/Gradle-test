@@ -1,32 +1,31 @@
-name: "Snyk Gradle Scan"
+name: "Snyk Gradle/OS Scan (configurable)"
 
 on:
   push:
     branches:
-      - '*'  # Include any branch starting with demo
+      - '*'  # Include all branches (change if needed)
 
 jobs:
   Pipeline-Job:
     # Configure Environment
-    name: 'Snyk Gradle OS Scan'
+    name: 'Snyk Scan'
     runs-on: ubuntu-latest
     env:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      # Optional: Environment variables for script configuration
+      SNYK_SCRIPT: ./snyk_delta_all_projects.sh  # Default script name
+      SNYK_SCRIPT_ARGS: "--all-projects --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --remote-repo-url=gradle-test-cli"  # Default arguments
 
     steps:
       # Checkout Code
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
+      - uses: actions/checkout@v1
 
-      # Install and Authenticate to Snyk
-      - name: Install Snyk & Authenticate
+      # Run Snyk Scan (script based)
+      - name: Run Snyk Scan
         run: |
-          sudo npm install -g snyk
-          sudo npm install -g snyk-delta
-          snyk auth ${SNYK_TOKEN}
-
-      # Run Snyk OS
-      - name: Run Snyk OS
-        run: |
-          ./snyk_delta_all_projects.sh --all-projects --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --remote-repo-url=gradle-test-cli
+          ${{ env.SNYK_SCRIPT }} ${{ env.SNYK_SCRIPT_ARGS }}
         continue-on-error: true
+
+
+
+
