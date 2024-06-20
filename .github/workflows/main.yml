@@ -1,13 +1,33 @@
-name: "Gradle Example Workflow"
-on: push
+name: "Snyk Gradle Scan"
+
+on:
+  push:
+    branches:
+      - '*'  # Include any branch starting with demo
+
 jobs:
-  security:
+  Pipeline-Job:
+    # Configure Environment
+    name: 'Snyk Gradle OS Scan'
     runs-on: ubuntu-latest
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
     steps:
+      # Checkout Code
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/gradle@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
+
+      # Install and Authenticate to Snyk
+      - name: Install Snyk & Authenticate
+        run: |
+          sudo npm install -g snyk
+          sudo npm install -g snyk-delta
+          snyk auth ${SNYK_TOKEN}
+
+      # Run Snyk OS
+      - name: Run Snyk OS
+        run: |
+          ./snyk_delta_all_projects.sh --all-projects --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --remote-repo-url=gradle-test-cli
+        continue-on-error: true
