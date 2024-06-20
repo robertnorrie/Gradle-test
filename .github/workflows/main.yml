@@ -3,7 +3,7 @@ name: "Snyk Gradle/OS Scan"
 on:
   push:
     branches:
-      - '*'  # Include any branch starting with demo
+      - 'demo*'  # Include any branch starting with demo
 
 jobs:
   Pipeline-Job:
