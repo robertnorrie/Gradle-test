@@ -1,0 +1,32 @@
+name: "Snyk Gradle/OS Scan"
+
+on:
+  push:
+    branches:
+      - 'demo*'  # Include any branch starting with demo
+
+jobs:
+  Pipeline-Job:
+    # Configure Environment
+    name: 'Snyk Config'
+    runs-on: ubuntu-latest
+    env:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+    steps:
+      # Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v1
+
+      # Install and Authenticate to Snyk
+      - name: Install Snyk & Authenticate
+        run: |
+          sudo npm install -g snyk
+          sudo npm install -g snyk-delta
+          snyk auth ${SNYK_TOKEN}
+      # Run Snyk OS
+      - name: Run Snyk OS
+        run: |
+          snyk test --file=build.gradle.kts --project-name="gh_action_delta_gradle" --json --print-deps | snyk-delta --baselineOrg 6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --baselineProject 43d01950-c6e7-4a6b-92ad-886b6d1e6b6b --setPassIfNoBaseline true
+          snyk monitor --file=build.gradle.kts --project-name="gh_action_delta_gradle" 
+        continue-on-error: true
