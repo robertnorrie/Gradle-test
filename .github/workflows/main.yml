@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - 'demo*'  # Include any branch starting with demo
-  pull_request:
-    branches:
-      - main
 
 jobs:
   Pipeline-Job:
@@ -31,9 +28,6 @@ jobs:
       # Run Snyk OS
       - name: Run Snyk OS
         run: |
-          ./snyk_delta_all_projects.sh --baselineOrg 6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --remote-repo-url=gradle-test-cli
+          ./snyk_delta_all_projects.sh --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --severity=low --remote-repo-url=gradle-test-cli 
           snyk monitor --all-projects --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --remote-repo-url=gradle-test-cli
         continue-on-error: true
-
-
-
