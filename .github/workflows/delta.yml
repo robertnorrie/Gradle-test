@@ -1,4 +1,4 @@
-name: "Snyk Gradle/OS Scan"
+name: "Snyk Gradle - Single file (delta)"
 
 on:
   push:
