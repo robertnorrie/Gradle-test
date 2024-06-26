@@ -27,5 +27,5 @@ jobs:
       # Run Snyk OS
       - name: Run Snyk OS
         run: |
-          snyk test --file=build.gradle.kts --project-name="gh_action_delta_gradle" --json --print-deps | snyk-delta --baselineOrg 6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --baselineProject 43d01950-c6e7-4a6b-92ad-886b6d1e6b6b --setPassIfNoBaseline true
+          snyk test --file=build.gradle.kts --project-name="gh_action_delta_gradle" --json --print-deps | snyk-delta --baselineOrg 6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --baselineProject faa28876-c591-439a-9c1c-e76a7ca9dba5 --setPassIfNoBaseline true
         continue-on-error: true
