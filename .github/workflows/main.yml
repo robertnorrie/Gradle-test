@@ -28,6 +28,6 @@ jobs:
       # Run Snyk OS
       - name: Run Snyk OS
         run: |
-          ./snyk_delta_all_projects.sh --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --severity=low --remote-repo-url=gradle-test-cli 
-          snyk monitor --all-projects --org=6d36ac7a-c75b-4179-8e73-6dd4d3fc8343 --remote-repo-url=gradle-test-cli
+          ./snyk_delta_all_projects.sh --org=5dea2dc9-93fa-4227-8fd4-698534042bb0 --severity=low --remote-repo-url=gradle-test-cli 
+          snyk monitor --all-projects --org=5dea2dc9-93fa-4227-8fd4-698534042bb0 --remote-repo-url=gradle-test-cli
         continue-on-error: true
