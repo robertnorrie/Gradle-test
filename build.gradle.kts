@@ -49,7 +49,7 @@ repositories {
 val modelsProject = project(":lib:models")
 dependencies {
     implementation(modelsProject)
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.7.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.6.1")
 }
 
 spotless {
