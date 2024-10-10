@@ -1,0 +1,19 @@
+name: Example workflow for Gradle using Snyk
+on:
+  pull_request: {}
+  workflow_dispatch: {}
+  push:
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run chmod to make gradlew executable
+        run: chmod +x gradlew
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/gradle-jdk17@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --all-projects --detection-depth=5 --print-deps -d
+          command: 
